@@ -20,9 +20,53 @@ public class Empresa {
     public void registrarCliente(Cliente cliente) {
         listaClientes.add(cliente);
     }
-
+    public void eliminarCliente(String cedula) {
+        for (int i = 0; i < listaClientes.size(); i++) {
+            Cliente c = listaClientes.get(i);
+            if (c.getCedula().equals(cedula)) {
+                listaClientes.remove(i);
+                break; // salir después de eliminar
+            }
+        }
+    }
+    public void actualizarCliente(Cliente clienteActualizado) {
+        for (int i = 0; i < listaClientes.size(); i++) {
+            Cliente c = listaClientes.get(i);
+            if (c.getCedula().equals(clienteActualizado.getCedula())) {
+                listaClientes.set(i, clienteActualizado);
+                break;
+            }
+        }
+    }
     public void registrarProducto(Producto producto) {
         listaProductos.add(producto);
+    }
+    public void eliminarProducto(String codigo) {
+        for (int i = 0; i < listaProductos.size(); i++) {
+            Producto p = listaProductos.get(i);
+            if (p.getCodigo().equals(codigo)) {
+                listaProductos.remove(i);
+                break;
+            }
+        }
+    }
+    public Producto buscarProducto(String codigo) {
+        for (int i = 0; i < listaProductos.size(); i++) {
+            Producto p = listaProductos.get(i);
+            if (p.getCodigo().equals(codigo)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Factura registrarFactura(String codigo, Cliente cliente, List<DetalleFactura> detalles) {
+        Factura factura = new Factura(codigo, java.time.LocalDate.now(), cliente);
+        for (int i = 0; i < detalles.size(); i++) {
+            factura.agregarDetalle(detalles.get(i));
+        }
+        listaFacturas.add(factura);
+        return factura;
     }
 
     public Factura generarFactura(String codigo, Cliente cliente, List<DetalleFactura> detalles) {

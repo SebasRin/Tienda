@@ -27,6 +27,7 @@ public class Factura {
         return cliente.calcularDescuento(total);
     }
 
+
     public void mostrarFactura() {
         System.out.println("Factura N°: " + codigo);
         System.out.println("Cliente: " + cliente.getNombre());
