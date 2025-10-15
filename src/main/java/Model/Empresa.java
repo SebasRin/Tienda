@@ -59,15 +59,7 @@ public class Empresa {
         }
         return null;
     }
-
-    public Factura registrarFactura(String codigo, Cliente cliente, List<DetalleFactura> detalles) {
-        Factura factura = new Factura(codigo, java.time.LocalDate.now(), cliente);
-        for (int i = 0; i < detalles.size(); i++) {
-            factura.agregarDetalle(detalles.get(i));
-        }
-        listaFacturas.add(factura);
-        return factura;
-    }
+    
 
     public Factura generarFactura(String codigo, Cliente cliente, List<DetalleFactura> detalles) {
         Factura factura = new Factura(codigo, java.time.LocalDate.now(), cliente);
